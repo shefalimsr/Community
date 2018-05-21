@@ -1,7 +1,5 @@
 package com.example.pay1.community.TrainingMaterial;
 
-import java.sql.Timestamp;
-
 public class Feed {
 
     private String title;

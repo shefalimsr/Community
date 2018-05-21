@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:weightSum="10"
-    tools:context="com.example.pay1.community.TrainingMaterial.FeedViewHolder">
+    tools:context="com.example.pay1.community.community.TrainingMaterial.FeedViewHolder">
 
 
 

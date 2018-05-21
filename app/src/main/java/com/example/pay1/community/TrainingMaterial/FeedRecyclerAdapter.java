@@ -1,12 +1,10 @@
 package com.example.pay1.community.TrainingMaterial;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.pay1.community.R;
-import com.example.pay1.community.TrainingMaterial.FeedViewHolder;
 
 public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedViewHolder> {
 
@@ -19,7 +17,7 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedViewHolder> {
     @Override
     public FeedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new FeedViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_layout, parent, false));
+                .inflate(R.layout.feed_item_layout, parent, false));
     }
 
     @Override
