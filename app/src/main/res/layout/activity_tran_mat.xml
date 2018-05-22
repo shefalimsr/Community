@@ -45,6 +45,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:background="#FFFFFF"
             android:titleTextColor="#DC143C"
+            app:theme="@style/ToolBarStyle"
             tools:layout_editor_absoluteY="0dp"
             tools:ignore="MissingConstraints"
             />
