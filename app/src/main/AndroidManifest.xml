@@ -11,33 +11,81 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+
         <activity
             android:label="Training Material"
             android:name=".TrainingMaterial.FeedActivity" >
+            <intent-filter android:label="Training">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.community-training.com” -->
+                <data android:scheme="http"
+                    android:host="www.community-training.com"
+                    />
+            </intent-filter>
+        </activity>
 
+        <activity
+            android:label="Aeps"
+            android:name=".AEPS.AepsActivity" >
+            <intent-filter android:label="AEPS">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.community-aeps.com” -->
+                <data android:scheme="http"
+                    android:host="www.community-aeps.com"
+                     />
+            </intent-filter>
         </activity>
 
         <activity
             android:label="Blog"
             android:name=".blog.BlogActivity" >
+            <intent-filter android:label="Blog">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.community-blog.com” -->
+                <data android:scheme="http"
+                    android:host="www.community-blog.com"
+                    />
+            </intent-filter>
 
         </activity>
 
         <activity
             android:label="Company Update"
             android:name=".CompUpdt.UpdateActivity" >
-
+            <intent-filter android:label="Update">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.community-update.com” -->
+                <data android:scheme="http"
+                    android:host="www.community-update.com"
+                    />
+            </intent-filter>
         </activity>
 
         <activity
-            android:label="PAY1 Community"
+            android:label="Community"
             android:name=".home.HomeActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+            <intent-filter android:label="Home">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.community-home.com” -->
+                <data android:scheme="http"
+                    android:host="www.community-home.com"
+                    />
+            </intent-filter>
         </activity>
 
 

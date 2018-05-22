@@ -15,15 +15,17 @@ import java.io.InputStream;
 
 public class FeedViewHolder extends RecyclerView.ViewHolder implements RowView {
 
+    private static final String TAG = "check";
     TextView title;
     ImageView icon;
 
+
     public FeedViewHolder(View itemView) {
         super(itemView);
+
         title = (TextView)itemView.findViewById(R.id.item_title);
         icon = (ImageView)itemView.findViewById(R.id.item_icon);
     }
-
 
     @Override
     public void setTitle(String titlee) {

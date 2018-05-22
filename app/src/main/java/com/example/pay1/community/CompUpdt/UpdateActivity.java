@@ -1,6 +1,7 @@
 package com.example.pay1.community.CompUpdt;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,6 +21,7 @@ import com.example.pay1.community.R;
 import com.example.pay1.community.TrainingMaterial.FeedActivity;
 import com.example.pay1.community.blog.BlogActivity;
 import com.example.pay1.community.home.HomeActivity;
+import com.example.pay1.community.home.HomeRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,19 +88,22 @@ public class UpdateActivity extends AppCompatActivity
                         switch (menuItem.getItemId()) {
 
                             case R.id.home :
-                            Intent i = new Intent(UpdateActivity.this, HomeActivity.class);
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-home.com"));
                             startActivity(i);
                             break;
 
                             case R.id.trainMat :
-                                Intent i1 = new Intent(UpdateActivity.this, FeedActivity.class);
+                                Intent i1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-training.com"));
                                 startActivity(i1);
                                 break;
 
                             case R.id.blog :
-                                Intent i3 = new Intent(UpdateActivity.this, BlogActivity.class);
+                                Intent i3 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-blog.com"));
                                 startActivity(i3);
                                 break;
+                            case R.id.chat :
+                                Intent implicit = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-aeps.com"));
+                                startActivity(implicit);
 
 
                             default: return true;
@@ -115,9 +121,9 @@ public class UpdateActivity extends AppCompatActivity
         // this is data fro recycler view
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = tsLong.toString();
-        Update fd=new Update("Shefali","https://www.google.com","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside",ts);
+        Update fd=new Update("PAY1 AADHAR ATM ","https://www.youtube.com/watch?v=tzCCXnnQOBU","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
         updateList.add(fd);
-        Update fd1=new Update("Shefali","https://www.google.com","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside",ts);
+        Update fd1=new Update("PAY1 SWIPE","https://www.youtube.com/watch?v=ok5BMo1FWng","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
 
         updateList.add(fd1);
         // 2. set layoutManger
@@ -125,7 +131,16 @@ public class UpdateActivity extends AppCompatActivity
 
         // 3. create an adapter
         UpdateListPresenter updateListPresenter = new UpdateListPresenter(updateList);
-        UpdateRecyclerAdapter mAdapter = new UpdateRecyclerAdapter(updateListPresenter);
+       UpdateRecyclerAdapter mAdapter = new UpdateRecyclerAdapter( updateListPresenter,new com.example.pay1.community.CompUpdt.RecyclerViewClickListener(){
+            @Override
+            public void onItemClick(View v, int position) {
+                Log.d("testing", "clicked position:" + position);
+                Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(updateList.get(position).getTitleUrl()));
+                startActivity(intent);
+            }
+        });
+
+
 
         // 4. set adapter
         recyclerView.setAdapter(mAdapter);

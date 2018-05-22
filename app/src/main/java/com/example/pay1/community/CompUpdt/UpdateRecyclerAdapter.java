@@ -2,23 +2,35 @@ package com.example.pay1.community.CompUpdt;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pay1.community.R;
 
+import com.example.pay1.community.CompUpdt.RecyclerViewClickListener;
+
 public class UpdateRecyclerAdapter extends RecyclerView.Adapter<UpdateViewHolder> {
 
     private final UpdateListPresenter presenter;
+    RecyclerViewClickListener listener;
 
-    public UpdateRecyclerAdapter(UpdateListPresenter updateListPresenter) {
+    public UpdateRecyclerAdapter(UpdateListPresenter updateListPresenter,RecyclerViewClickListener listener) {
         this.presenter = updateListPresenter;
+        this.listener=listener;
     }
 
     @Override
     public UpdateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new UpdateViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.feed_item_layout, parent, false));
-    }
+        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.update_item_layout, parent, false);
+        final UpdateViewHolder mViewHolder = new UpdateViewHolder(mView);
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listener.onItemClick(v, mViewHolder.getAdapterPosition());
+            }
+        });
+        return mViewHolder; }
 
     @Override
     public void onBindViewHolder(UpdateViewHolder viewHolder, int position) {

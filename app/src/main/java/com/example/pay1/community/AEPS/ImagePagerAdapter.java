@@ -1,68 +1,93 @@
 package com.example.pay1.community.AEPS;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import com.example.pay1.community.R;
+import com.example.pay1.community.home.HomeViewHolder;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
 public class ImagePagerAdapter extends PagerAdapter {
 
 
-    private ArrayList<Integer> IMAGES;
-    private LayoutInflater inflater;
-    private Context context;
+    Context context;
+    ArrayList<String> images = new ArrayList<>();
+    LayoutInflater layoutInflater;
+    ImageView imageView;
 
 
-    public ImagePagerAdapter(Context context,ArrayList<Integer> IMAGES) {
+    public ImagePagerAdapter(Context context, ArrayList<String> images) {
         this.context = context;
-        this.IMAGES=IMAGES;
-        inflater = LayoutInflater.from(context);
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View) object);
+        this.images = images;
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return IMAGES.size();
-    }
-
-    @Override
-    public Object instantiateItem(ViewGroup view, int position) {
-        View imageLayout = inflater.inflate(R.layout.aeps_layout, view, false);
-
-        assert imageLayout != null;
-        final ImageView imageView = (ImageView) imageLayout
-                .findViewById(R.id.image);
-
-
-        imageView.setImageResource(IMAGES.get(position));
-
-        view.addView(imageLayout, 0);
-
-        return imageLayout;
+        return images.size();
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view.equals(object);
+        return view == ((LinearLayout) object);
     }
 
     @Override
-    public void restoreState(Parcelable state, ClassLoader loader) {
+    public Object instantiateItem(ViewGroup container, final int position) {
+        View itemView = layoutInflater.inflate(R.layout.aeps_layout, container, false);
+
+        imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        new ImagePagerAdapter.DownloadImageTask(imageView)
+                .execute(images.get(position));
+
+        container.addView(itemView);
+
+
+        return itemView;
     }
 
     @Override
-    public Parcelable saveState() {
-        return null;
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((LinearLayout) object);
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
 

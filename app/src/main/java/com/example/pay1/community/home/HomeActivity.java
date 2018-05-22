@@ -1,6 +1,7 @@
 package com.example.pay1.community.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,12 +13,15 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.pay1.community.CompUpdt.UpdateActivity;
 import com.example.pay1.community.R;
 import com.example.pay1.community.TrainingMaterial.FeedActivity;
+import com.example.pay1.community.TrainingMaterial.FeedRecyclerAdapter;
+import com.example.pay1.community.TrainingMaterial.RecyclerViewClickListener;
 import com.example.pay1.community.blog.BlogActivity;
 
 import java.util.ArrayList;
@@ -90,18 +94,22 @@ public class HomeActivity extends AppCompatActivity
                         switch (menuItem.getItemId()) {
 
                             case R.id.trainMat :
-                                Intent i = new Intent(HomeActivity.this, FeedActivity.class);
+                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-training.com"));
                                 startActivity(i);
                                 break;
                             case R.id.compUpd :
-                                Intent i1 = new Intent(HomeActivity.this, UpdateActivity.class);
+                                Intent i1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-update.com"));
                                 startActivity(i1);
                                 break;
 
                             case R.id.blog :
-                                Intent i3 = new Intent(HomeActivity.this, BlogActivity.class);
+                                Intent i3 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-blog.com"));
                                 startActivity(i3);
                                 break;
+
+                            case R.id.chat :
+                                Intent implicit = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-aeps.com"));
+                                startActivity(implicit);
 
                             default: return true;
                         }
@@ -116,9 +124,9 @@ public class HomeActivity extends AppCompatActivity
         // this is data fro recycler view
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = tsLong.toString();
-        Home fd=new Home("Shefali","https://www.google.com","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
+        Home fd=new Home("PAY1 AADHAR ATM ","https://www.youtube.com/watch?v=tzCCXnnQOBU","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
         homeList.add(fd);
-        Home fd1=new Home("Shefali","https://www.google.com","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
+        Home fd1=new Home("PAY1 SWIPE","https://www.youtube.com/watch?v=ok5BMo1FWng","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
 
         homeList.add(fd1);
         // 2. set layoutManger
@@ -126,7 +134,14 @@ public class HomeActivity extends AppCompatActivity
 
         // 3. create an adapter
         HomeListPresenter homeListPresenter = new HomeListPresenter(homeList);
-        HomeRecyclerAdapter mAdapter = new HomeRecyclerAdapter(homeListPresenter);
+        HomeRecyclerAdapter mAdapter = new HomeRecyclerAdapter( homeListPresenter,new com.example.pay1.community.home.RecyclerViewClickListener(){
+            @Override
+            public void onItemClick(View v, int position) {
+                Log.d("testing", "clicked position:" + position);
+                Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(homeList.get(position).getTitleUrl()));
+                startActivity(intent);
+            }
+        });
 
         // 4. set adapter
         recyclerView.setAdapter(mAdapter);

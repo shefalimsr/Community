@@ -2,6 +2,7 @@ package com.example.pay1.community.blog;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
 
 import com.example.pay1.community.CompUpdt.UpdateActivity;
 import com.example.pay1.community.R;
@@ -82,19 +84,22 @@ public class BlogActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
 
                             case R.id.home :
-                                Intent i = new Intent(BlogActivity.this, HomeActivity.class);
+                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-home.com"));
                                 startActivity(i);
                                 break;
 
                             case R.id.trainMat :
-                                Intent i2 = new Intent(BlogActivity.this, FeedActivity.class);
+                                Intent i2 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-training.com"));
                                 startActivity(i2);
                                 break;
 
                             case R.id.compUpd :
-                                Intent i1 = new Intent(BlogActivity.this, UpdateActivity.class);
+                                Intent i1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-update.com"));
                                 startActivity(i1);
                                 break;
+                            case R.id.chat :
+                                Intent implicit = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.community-aeps.com"));
+                                startActivity(implicit);
 
 
 
@@ -114,7 +119,7 @@ public class BlogActivity extends AppCompatActivity {
         WebViewClientImpl webViewClient = new WebViewClientImpl(this);
         webView.setWebViewClient(webViewClient);
 
-        webView.loadUrl("http://pay1.in/partners-blog/");
+        webView.loadUrl("http://pay1.in/partners-blog/a-partnership-with-plethora-of-opportunities/");
     }
 
 
