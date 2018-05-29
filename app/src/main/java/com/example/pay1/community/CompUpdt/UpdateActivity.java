@@ -76,6 +76,7 @@ public class UpdateActivity extends AppCompatActivity
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -121,9 +122,9 @@ public class UpdateActivity extends AppCompatActivity
         // this is data fro recycler view
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = tsLong.toString();
-        Update fd=new Update("PAY1 AADHAR ATM ","https://www.youtube.com/watch?v=tzCCXnnQOBU","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
+        Update fd=new Update("PAY1 AADHAR ATM ","https://www.youtube.com/watch?v=tzCCXnnQOBU","http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Youtube-icon.png","outside","29:90");
         updateList.add(fd);
-        Update fd1=new Update("PAY1 SWIPE","https://www.youtube.com/watch?v=ok5BMo1FWng","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
+        Update fd1=new Update("PAY1 SWIPE","https://www.youtube.com/watch?v=ok5BMo1FWng","http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Youtube-icon.png","outside","29:90");
 
         updateList.add(fd1);
         // 2. set layoutManger

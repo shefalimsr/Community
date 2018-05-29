@@ -77,6 +77,7 @@ public class FeedActivity extends AppCompatActivity
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -119,9 +120,9 @@ public class FeedActivity extends AppCompatActivity
         // this is data fro recycler view
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = tsLong.toString();
-        Feed fd=new Feed("Aeps training material","http://www.example.com/gizmos","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside",ts);
+        Feed fd=new Feed("Aeps training material","http://www.community-aeps.com","http://icons.iconarchive.com/icons/tuziibanez/profesional-red/256/favorites-icon.png","outside",ts);
         feedList.add(fd);
-        Feed fd1=new Feed("Youtube video","https://www.youtube.com","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside",ts);
+        Feed fd1=new Feed("Youtube video","https://www.youtube.com","http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Youtube-icon.png","outside",ts);
 
         feedList.add(fd1);
         // 2. set layoutManger

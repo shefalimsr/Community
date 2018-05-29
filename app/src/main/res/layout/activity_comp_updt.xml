@@ -29,7 +29,7 @@
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:fillViewport="false"
-        android:background="#DCDCDC">
+        android:background="#EEEEEE">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,6 +45,7 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:background="#FFFFFF"
                 android:titleTextColor="#DC143C"
+                app:fontFamily="@font/cabin_medium"
                 app:theme="@style/ToolBarStyle"
                 tools:layout_editor_absoluteY="0dp"
                 tools:ignore="MissingConstraints"
@@ -64,6 +65,7 @@
                     android:id="@+id/UpdateRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    app:fontFamily="@font/cabin"
                     tools:context=".community.CompUpdt.UpdateActivity"
                     />
             </LinearLayout>

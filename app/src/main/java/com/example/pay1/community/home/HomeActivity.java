@@ -16,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.pay1.community.CompUpdt.UpdateActivity;
 import com.example.pay1.community.R;
@@ -24,6 +26,9 @@ import com.example.pay1.community.TrainingMaterial.FeedRecyclerAdapter;
 import com.example.pay1.community.TrainingMaterial.RecyclerViewClickListener;
 import com.example.pay1.community.blog.BlogActivity;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +39,9 @@ public class HomeActivity extends AppCompatActivity
 
     List<Home> homeList = new ArrayList<Home>();
     private DrawerLayout mDrawerLayout;
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy.HH:mm");
 
-
+    Date date= new Date(System.currentTimeMillis());
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -44,8 +50,11 @@ public class HomeActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
+
+        toolbar.setNavigationIcon(R.drawable.ic_community_logo);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
 
@@ -78,6 +87,7 @@ public class HomeActivity extends AppCompatActivity
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -122,11 +132,12 @@ public class HomeActivity extends AppCompatActivity
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.homeRecyclerView);
 
         // this is data fro recycler view
-        Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
-        Home fd=new Home("PAY1 AADHAR ATM ","https://www.youtube.com/watch?v=tzCCXnnQOBU","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
+
+        String ts = sdf.format(date);
+
+        Home fd=new Home("PAY1 AADHAR ATM ","https://www.youtube.com/watch?v=tzCCXnnQOBU","http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Youtube-icon.png","outside",ts);
         homeList.add(fd);
-        Home fd1=new Home("PAY1 SWIPE","https://www.youtube.com/watch?v=ok5BMo1FWng","https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png","outside","29:90");
+        Home fd1=new Home("PAY1 SWIPE","https://www.youtube.com/watch?v=ok5BMo1FWng","http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Youtube-icon.png","outside",ts);
 
         homeList.add(fd1);
         // 2. set layoutManger
@@ -149,8 +160,6 @@ public class HomeActivity extends AppCompatActivity
         // 5. set item animator to DefaultAnimator
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), VERTICAL); //vertical line add
-        recyclerView.addItemDecoration(mDividerItemDecoration);
 
     }
 

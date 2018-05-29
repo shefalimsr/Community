@@ -31,8 +31,9 @@
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:background="#FFFFFF"
-                android:titleTextColor="#DC143C"
+                android:titleTextColor="#ec1a3b"
                 app:theme="@style/ToolBarStyle"
+                app:fontFamily="@font/cabin_medium"
                 tools:layout_editor_absoluteY="0dp"
                 tools:ignore="MissingConstraints"
                 />

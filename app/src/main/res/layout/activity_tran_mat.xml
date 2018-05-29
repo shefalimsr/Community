@@ -29,7 +29,7 @@
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:fillViewport="false"
-        android:background="#DCDCDC">
+        android:background="#EEEEEE">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,6 +43,7 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:fontFamily="@font/cabin"
             android:background="#FFFFFF"
             android:titleTextColor="#DC143C"
             app:theme="@style/ToolBarStyle"
@@ -63,6 +64,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
+                app:fontFamily="@font/cabin"
                 android:layout_height="match_parent"
                 tools:context=".community.TrainingMaterial.FeedActivity"
                 />

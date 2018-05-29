@@ -14,8 +14,11 @@ public class HomeListPresenter {
         Home home = homeList.get(position);
         rowView.setIcon(home.getIconUrl());
         rowView.setTitle(home.getTitle());
-        rowView.setDate(home.getTimestamp());
-        rowView.setTime(home.getTimestamp());
+        String date,time;
+        date=home.getTimestamp().substring(0,8);
+        time=home.getTimestamp().substring(9,14);
+        rowView.setDate(date);
+        rowView.setTime(time);
     }
 
     public int getFeedListRowsCount() {
