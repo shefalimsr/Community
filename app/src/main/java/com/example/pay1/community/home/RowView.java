@@ -10,4 +10,6 @@ public interface RowView {
 
     void setTime(String time);
 
+    void setVideo(String videoURL);
+
 }

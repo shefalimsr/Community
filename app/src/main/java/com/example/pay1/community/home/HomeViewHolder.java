@@ -2,12 +2,15 @@ package com.example.pay1.community.home;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.pay1.community.R;
 
@@ -16,7 +19,8 @@ import java.io.InputStream;
 public class HomeViewHolder extends RecyclerView.ViewHolder implements RowView {
 
     TextView title , time , date;
-    ImageView icon;
+    ImageView icon,right;
+    VideoView video;
 
     public HomeViewHolder(View itemView) {
         super(itemView);
@@ -24,6 +28,8 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements RowView {
         time = itemView.findViewById(R.id.home_item_time);
         date = itemView.findViewById(R.id.home_item_date);
         icon = itemView.findViewById(R.id.home_item_icon);
+        video = itemView.findViewById(R.id.videoView);
+        right=itemView.findViewById(R.id.right_icon);
     }
 
 
@@ -48,6 +54,16 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements RowView {
     @Override
     public void setTime(String tim) {
         time.setText(tim);
+
+    }
+
+    @Override
+    public void setVideo(String videoURL) {
+    title.setVisibility(View.INVISIBLE);
+    icon.setVisibility(View.INVISIBLE);
+    right.setVisibility(View.INVISIBLE);
+    video.setVisibility(View.VISIBLE);
+
 
     }
 

@@ -8,6 +8,7 @@ public class Home {
     private String type;
     private String timestamp;
 
+
     public Home(String tit, String titUrl, String icUrl, String typ, String tmstmp)
     {
         title=tit;
